@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-  <h1>На данный момент тут нет реализации, тут будет информация о книге</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-9">
+            <div class="card mb-3" style="max-width: 1000px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ book.photo.url }}" alt="..." width="300" height="350">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.description }}</p>
+                            <p class="card-text">Жанр: {{ book.genre }}</p>
+                            <p class="card-text">Автор: {{ book.author }}</p>
+                            <p class="card-text"><small class="text-muted">Количество страниц: {{ book.pages }}</small>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Цена {{ book.price }}</small></p>
+                            <p class="card-text"><small class="text-muted">Выпущено {{book.public_date }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

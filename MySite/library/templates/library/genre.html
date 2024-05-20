@@ -5,15 +5,6 @@
 <h1>{{ gen }}</h1>
 {% endblock %}
 
-{% block sidebar %}
-<div class="col-md-3">
-    <ul class="list-group">
-        {% for gen in genre %}
-        <a href="{% url 'genre' gen.pk %}" class="list-group-item">{{ gen.name }}</a>
-        {% endfor %}
-    </ul>
-</div>
-{% endblock %}
 
 {% block content %}
 <div class="col-md-9">
