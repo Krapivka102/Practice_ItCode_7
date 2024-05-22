@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block theme %}
     <h1>{{ title }}</h1>
@@ -6,37 +7,41 @@
 
 {% block sidebar %}
     <div class="col-md-3">
-    <ul class="list-group">
-        {% for gen in genre %}
-        <a href="{% url 'genre' gen.pk %}" class="list-group-item">{{ gen.name }}</a>
-        {% endfor %}
-    </ul>
-</div>
+        <div class="card-body">
+            <form method="get">
+                {% csrf_token %}
+                {{ filters.form.as_p }}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">Поиск</button>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
     <div class="col-md-9">
-    {% for item in book %}
-    <div class="card mb-3" style="max-width: 1000px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ item.photo.url }}" alt="..." width="300" height="350">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ item.title }}</h5>
-                    <p class="card-text">{{ item.description }}</p>
-                    <p class="card-text"><small class="text-muted">Количество страниц: {{ item.pages }}</small>
-                    </p>
-                    <p class="card-text"><small class="text-muted">Цена {{ item.price }}</small></p>
-                    <p class="card-text"><small class="text-muted">Выпущено {{ item.public_date }}</small></p>
-                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary float-end">Подробнее...</a>
+        {% for item in book %}
+            <div class="card mb-3" style="max-width: 1000px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <p class="card-text"><small class="text-muted">Количество страниц: {{ item.pages }}</small>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Цена {{ item.price }}</small></p>
+                            <p class="card-text"><small class="text-muted">Выпущено {{ item.public_date }}</small></p>
+                            <a href="{{ item.get_absolute_url }}" class="btn btn-primary float-end">Подробнее...</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endblock %}
 
 
